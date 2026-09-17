@@ -1,3 +1,16 @@
+# Install bun 1.2.15 locally to match the build environment
+curl -fsSL https://bun.sh/install | bash -s "bun-v1.2.15"
+
+# Delete the incompatible lockfile and regenerate
+rm bun.lock
+bun install
+
+# Commit and push
+git add bun.lock
+git commit -m "Regenerate bun.lock for bun 1.2.x compatibility"
+git push origin main
+
+
 {
   "lockfileVersion": 2,
   "configVersion": 1,

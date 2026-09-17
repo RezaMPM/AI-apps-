@@ -1,0 +1,8 @@
+{
+  "name": "Intermittent Fasting Group",
+  "description": "A group intermittent fasting tracker for friends to share progress, earn medals, and motivate each other.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

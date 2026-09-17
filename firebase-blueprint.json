@@ -1,0 +1,106 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profile",
+      "description": "User profile, statistics, current protocol, streak, and medals",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "avatarEmoji": { "type": "string" },
+        "currentFastId": { "type": "string" },
+        "activeFastStartedAt": { "type": "string", "format": "date-time" },
+        "activeFastTargetHours": { "type": "number" },
+        "protocol": { "type": "string" },
+        "currentStreak": { "type": "number" },
+        "longestStreak": { "type": "number" },
+        "totalCompletedFasts": { "type": "number" },
+        "totalHoursFasted": { "type": "number" },
+        "medals": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "joinedRooms": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "activeRoomId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["displayName", "email"]
+    },
+    "rooms": {
+      "title": "Fasting Room / Group",
+      "description": "A group circle created by friends to fast together with public or private visibility",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "code": { "type": "string" },
+        "description": { "type": "string" },
+        "picture": { "type": "string" },
+        "type": { "type": "string", "enum": ["public", "private"] },
+        "createdById": { "type": "string" },
+        "createdByName": { "type": "string" },
+        "adminId": { "type": "string" },
+        "members": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "pendingRequests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "userId": { "type": "string" },
+              "displayName": { "type": "string" },
+              "avatarEmoji": { "type": "string" },
+              "requestedAt": { "type": "string", "format": "date-time" }
+            },
+            "required": ["userId", "displayName"]
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "code", "createdById"]
+    },
+    "fasts": {
+      "title": "Fast Record",
+      "description": "History and active fasting records",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userDisplayName": { "type": "string" },
+        "userAvatar": { "type": "string" },
+        "roomId": { "type": "string" },
+        "protocol": { "type": "string" },
+        "targetHours": { "type": "number" },
+        "startTime": { "type": "string", "format": "date-time" },
+        "endTime": { "type": "string", "format": "date-time" },
+        "completedHours": { "type": "number" },
+        "status": { "type": "string", "enum": ["active", "completed", "cancelled"] },
+        "notes": { "type": "string" },
+        "mood": { "type": "string" }
+      },
+      "required": ["userId", "targetHours", "startTime", "status"]
+    },
+    "encouragements": {
+      "title": "Encouragement & Motivation",
+      "description": "Cheers, claps, motivation quotes, and notes sent within rooms",
+      "type": "object",
+      "properties": {
+        "roomId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "senderAvatar": { "type": "string" },
+        "targetUserId": { "type": "string" },
+        "targetUserName": { "type": "string" },
+        "type": { "type": "string", "enum": ["cheer", "nudge", "medal_celebration", "message"] },
+        "emoji": { "type": "string" },
+        "message": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["roomId", "senderId", "senderName", "type"]
+    }
+  }
+}
